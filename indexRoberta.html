@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <h1>TESTE</h1>
+
+  <table>
+    <div id="saida"></div>
+  </table>
+
+  <table>
+    <div id="error"></div>
+  </table>
+
+  <script type="text/javascript">
+    
+    let cod_clie = prompt("Digite seu código de cliente: ",parseInt(1));
+    let tipo = prompt("Digite um número para sua opção de poupança (1,2 ou 3): ",parseInt(1));
+    let valor = prompt("Digite um valor em R$ investido: ",parseInt(0));
+
+    valor = +valor;
+
+    function tipoInvest(cod_clie,tipo,valor) {
+        try{
+
+          if (cod_clie === 0 || valor === 0) {
+
+            message = "operação inválida "
+            document.getElementById("error").innerHTML = message;
+
+          } 
+
+          if (tipo == 1 && cod_clie > 0) {
+
+            let taxa1 = 1.5 / 100;
+            let juros = Math.ceil(valor * taxa1);
+            let montante = parseInt(juros + valor);
+            
+            message = "seu rendimento mensal de poupança: " + montante + " e valor de juros mensal: "+ juros;
+
+            document.getElementById("saida").innerHTML = message;
+
+          } else if (tipo == 2 && cod_clie > 0) {
+
+            let taxa2 = 2 / 100;
+            let juros = Math.ceil(valor * taxa2);
+            let montante = parseInt(juros + valor);
+            
+            message = "seu rendimento mensal poupança-plus:  " + montante + " e valor de juros mensal: " + juros;
+
+            document.getElementById("saida").innerHTML = message;
+
+          } else if (tipo == 3 && cod_clie > 0) {
+
+            let taxa3 = 4 / 100;
+            let juros = Math.ceil(valor * taxa3);
+            let montante = parseInt(juros + valor);
+
+            message = "seu rendimento mensal fundos de renda fixa: " + montante + " e valor de juros mensal: " + juros;
+
+            document.getElementById("saida").innerHTML = message;
+
+          } else {
+
+            message = "operação inválida."
+            document.getElementById("error").innerHTML = message;
+
+          }
+
+        } catch (error) {
+          document.getElementById("error").innerHTML = error.message;
+        }
+    }
+    tipoInvest(cod_clie,tipo,valor)
+
+  </script>
+</body>
+</html>
