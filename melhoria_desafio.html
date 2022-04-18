@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <h1>MULHERES NA NITECH</h1>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <h1>DESAFIO 1</h1>
+  <br>
+  <br>
+  <p>Uma agência bancária possui vários clientes que podem fazer investimentos com rendimentos mensais, conforme a
+    tabela a seguir:</p>
+  <br><br>
+  <table>
+    <tr>
+      <td>TIPO</td>
+      <td>DESCRIÇÃO</td>
+      <td>RENDIMENTO MENSAL</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Poupança</td>
+      <td>1,5%</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Poupança plus</td>
+      <td>2%</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Fundos de renda fixa</td>
+      <td>4%</td>
+    </tr>
+  </table>
+
+
+  <p>Faça um programa que leia o código do cliente, o tipo da conta e o valor investido e que calcule e mostre o
+    rendimento mensal de acordo <br> com o tipo do investimento.Ao final do programa mostre o total investido e o
+    total de juros pagos.A leitura terminará quando o código do<br> cliente digitado for menor ou igual a 0.</p>
+
+
+  <div>
+    Digite seu código de cliente:
+    <input type="text" name="cod_clie" id="cod_clie">
+  </div>
+  <div>
+    Digite um número para sua opção de poupança (1,2 ou 3):
+    <input type="text" name="tipo" id="tipo">
+  </div>
+  <div>
+    Digite um valor em R$ investido:
+    <input type="text" name="valor" id="valor">
+  </div>
+
+  <button class="btn" onclick="tipoInvest();">Calcular</button>
+  <br>
+
+  <table>
+    <div id="saida"></div>
+  </table>
+
+  <table>
+    <div id="error"></div>
+  </table>
+</body>
+
+<script type="text/javascript">
+
+  function tipoInvest(cod_clie, tipo, valor) {
+    var cod_clie = document.getElementById("cod_clie").value;
+    var tipo = document.getElementById("tipo").value;
+    var valor = document.getElementById("valor").value;
+    valor = +valor;
+
+    try {
+
+      if (cod_clie === 0 || valor === 0) {
+
+        message = "operação inválida "
+        document.getElementById("error").innerHTML = message;
+
+      }
+
+      if (tipo == 1 && cod_clie > 0) {
+
+        var taxa1 = 1.5 / 100;
+        var juros = Math.ceil(valor * taxa1);
+        var montante = parseInt(juros + valor);
+
+        message = "seu rendimento mensal de poupança: " + montante + " e valor de juros mensal: " + juros;
+
+        document.getElementById("saida").innerHTML = message;
+
+      } else if (tipo == 2 && cod_clie > 0) {
+
+        var taxa2 = 2 / 100;
+        var juros = Math.ceil(valor * taxa2);
+        var montante = parseInt(juros + valor);
+
+        message = "seu rendimento mensal poupança-plus:  " + montante + " e valor de juros mensal: " + juros;
+
+        document.getElementById("saida").innerHTML = message;
+
+      } else if (tipo == 3 && cod_clie > 0) {
+
+        var taxa3 = 4 / 100;
+        var juros = Math.ceil(valor * taxa3);
+        var montante = parseInt(juros + valor);
+
+        message = "seu rendimento mensal fundos de renda fixa: " + montante + " e valor de juros mensal: " + juros;
+
+        document.getElementById("saida").innerHTML = message;
+
+      } else {
+
+        message = "operação inválida."
+        document.getElementById("error").innerHTML = message;
+
+      }
+
+    } catch (error) {
+      document.getElementById("error").innerHTML = error.message;
+    }
+    var resultipoInvest = tipoInvest(cod_clie, tipo, valor);
+  }
+  alert(resultipoInvest);
+
+</script>
+
+
+</html>
